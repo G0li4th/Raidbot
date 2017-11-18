@@ -19,6 +19,8 @@ public class Main {
 	
 	private final static Logger LOG = LoggerFactory.getLogger(Main.class);
 
+	public Long notifRoleId = 0L;
+	
 	public static void main(String[] args) {
 		LOG.info("=======================================================");
 		LOG.info("                     Le Refuge Bot                     ");
@@ -26,6 +28,7 @@ public class Main {
 
 		try {
 			JDA jda = new JDABuilder(AccountType.BOT).setToken(Conf.discordToken).addEventListener(new MessageListener()).setStatus(OnlineStatus.ONLINE).setGame(Game.of("Test...")).buildBlocking();
+			
 			LOG.info("Connecte avec: " + jda.getSelfUser().getName());
 			LOG.info("Le bot est autorisé sur " + jda.getGuilds().size() + " serveur(s) : " + jda.getGuilds().toString());
 		} catch(Exception e) {

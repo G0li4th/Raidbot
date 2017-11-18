@@ -18,6 +18,8 @@ public class Conf {
 	public final static String databasePassword;
 	public final static String databaseScheme;
 	
+	public final static Long notificationRoleId;
+	
 	static {
 		Map<String, String> botProperties = PropertiesUtil.initProps("config.properties");
 		discordToken = botProperties.get("discord.token");
@@ -26,5 +28,7 @@ public class Conf {
 		databaseLogin = botProperties.get("database.login");
 		databasePassword = botProperties.get("database.password");
 		databaseScheme = botProperties.get("database.schema");
+		
+		notificationRoleId = Long.valueOf(botProperties.get("discord.notification.role.id"));
 	}
 }
