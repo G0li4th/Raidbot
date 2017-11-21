@@ -1,4 +1,6 @@
 import listeners.MessageListener;
+import listeners.UserCreateListener;
+import listeners.UserPromoteListener;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -27,7 +29,11 @@ public class Main {
 		LOG.info("=======================================================");
 
 		try {
-			JDA jda = new JDABuilder(AccountType.BOT).setToken(Conf.discordToken).addEventListener(new MessageListener()).setStatus(OnlineStatus.ONLINE).setGame(Game.of("Test...")).buildBlocking();
+			JDA jda = new JDABuilder(AccountType.BOT).setToken(Conf.discordToken).setStatus(OnlineStatus.ONLINE).setGame(Game.of("Test...")).buildBlocking();
+			jda.addEventListener(new MessageListener());
+			jda.addEventListener(new UserCreateListener());
+			jda.addEventListener(new UserPromoteListener());
+			
 			
 			LOG.info("Connecte avec: " + jda.getSelfUser().getName());
 			LOG.info("Le bot est autorisé sur " + jda.getGuilds().size() + " serveur(s) : " + jda.getGuilds().toString());
